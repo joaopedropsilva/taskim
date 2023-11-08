@@ -28,7 +28,7 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.layout_lista, parent, false);
+                .inflate(R.layout.layout_tarefa, parent, false);
         return new ViewHolder(v);
     }
 
@@ -38,10 +38,8 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
 
         CheckBox chk = viewHolder.getChkTarefa();
 
-        if (chk != null) {
-            chk.setText(tarefa.getConteudo());
-            chk.setChecked(tarefa.getStatus());
-        }
+        chk.setText(tarefa.getConteudo());
+        chk.setChecked(tarefa.getStatus());
     }
 
     @Override
@@ -52,7 +50,7 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final CheckBox chkTarefa;
+         private final CheckBox chkTarefa;
 
         public CheckBox getChkTarefa() {
             return chkTarefa;

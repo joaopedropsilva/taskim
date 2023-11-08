@@ -27,8 +27,7 @@ public class ListaTarefaActivity extends AppCompatActivity {
 
         listagemTarefas = new ArrayList<>();
         Tarefa t = new Tarefa();
-        t.setConteudo("Teste");
-        t.setStatus(false);
+        t.setConteudo("Teste"); t.setStatus(false);
         t.setId(1);
         listagemTarefas.add(t);
         listagemTarefas.add(t);
