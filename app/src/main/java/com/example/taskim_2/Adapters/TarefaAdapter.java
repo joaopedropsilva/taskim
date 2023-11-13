@@ -1,14 +1,18 @@
 package com.example.taskim_2.Adapters;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.taskim_2.AddTarefa;
 import com.example.taskim_2.Dados.Tarefa;
+import com.example.taskim_2.Handlers.Database;
 import com.example.taskim_2.ListaTarefaActivity;
 import com.example.taskim_2.R;
 
@@ -18,10 +22,11 @@ import java.util.List;
 public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder> {
     private List<Tarefa> listagemTarefas;
     private ListaTarefaActivity listaTarefaActivity;
+    private Database db;
 
-    public TarefaAdapter(ListaTarefaActivity listaTarefaActivity) {
+    public TarefaAdapter(ListaTarefaActivity listaTarefaActivity, Database database) {
         this.listaTarefaActivity = listaTarefaActivity;
-        this.listagemTarefas = new ArrayList<>();
+        this.db = database;
     }
 
     @NonNull
@@ -34,12 +39,17 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+        db.openDb();
+
         Tarefa tarefa = listagemTarefas.get(position);
 
         CheckBox chk = viewHolder.getChkTarefa();
-
         chk.setText(tarefa.getConteudo());
         chk.setChecked(tarefa.getStatus());
+
+        chk.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            db.udpateStatusTarefa(tarefa.getId(), isChecked);
+        });
     }
 
     @Override
@@ -47,6 +57,20 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
 
     public void setListagemTarefas(List<Tarefa> listagemTarefas) {
         this.listagemTarefas = listagemTarefas;
+    }
+
+    public void editTarefaByIndex(int index) {
+        Tarefa tarefa = listagemTarefas.get(index);
+
+        // Passagem de dados da tarefa vindos da RecyclerView
+        // para o fragmento que permite a edição da tarefa, por meio de um bundle
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", tarefa.getId());
+        bundle.putString("conteudo", tarefa.getConteudo());
+
+        AddTarefa frgAddTarefa = new AddTarefa();
+        frgAddTarefa.setArguments(bundle);
+        frgAddTarefa.show(listaTarefaActivity.getSupportFragmentManager(), AddTarefa.TAG);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

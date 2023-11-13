@@ -26,7 +26,7 @@ public class Database extends SQLiteOpenHelper {
                     tarefa_status + "bit)";
     private SQLiteDatabase db;
 
-    private Database(Context context) {
+    public Database(Context context) {
         super(context, name, null, version);
     }
 
