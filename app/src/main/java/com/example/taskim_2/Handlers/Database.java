@@ -21,9 +21,9 @@ public class Database extends SQLiteOpenHelper {
     private static final String tarefa_status = "status";
     private static final String query_create_table_tarefa =
             "create table " + table_tarefa + "(" +
-                    tarefa_id + "integer primary key autoincrement," +
-                    tarefa_conteudo + "text," +
-                    tarefa_status + "bit)";
+                    tarefa_id + " integer primary key autoincrement," +
+                    tarefa_conteudo + " text," +
+                    tarefa_status + " bit)";
     private SQLiteDatabase db;
 
     public Database(Context context) {
