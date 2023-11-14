@@ -42,7 +42,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
     public void openDb() {
-        db = this.getWritableDatabase();
+        this.db = this.getWritableDatabase();
     }
 
     public void insertTarefa(Tarefa tarefa) {
