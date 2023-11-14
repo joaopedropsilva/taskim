@@ -5,18 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.taskim_2.AddTarefa;
+import com.example.taskim_2.FragmentAddTarefa;
 import com.example.taskim_2.Dados.Tarefa;
 import com.example.taskim_2.Handlers.Database;
 import com.example.taskim_2.ListaTarefaActivity;
 import com.example.taskim_2.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder> {
@@ -68,9 +66,9 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
         bundle.putInt("id", tarefa.getId());
         bundle.putString("conteudo", tarefa.getConteudo());
 
-        AddTarefa frgAddTarefa = new AddTarefa();
-        frgAddTarefa.setArguments(bundle);
-        frgAddTarefa.show(listaTarefaActivity.getSupportFragmentManager(), AddTarefa.TAG);
+        FragmentAddTarefa frgFragmentAddTarefa = new FragmentAddTarefa();
+        frgFragmentAddTarefa.setArguments(bundle);
+        frgFragmentAddTarefa.show(listaTarefaActivity.getSupportFragmentManager(), FragmentAddTarefa.TAG);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

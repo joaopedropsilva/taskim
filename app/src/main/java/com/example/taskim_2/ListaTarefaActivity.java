@@ -2,7 +2,6 @@ package com.example.taskim_2;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,7 +39,6 @@ public class ListaTarefaActivity extends AppCompatActivity implements DialogClos
 
         tarefaAdapter = new TarefaAdapter(this, db);
         rvListaTarefa.setAdapter(tarefaAdapter);
-        tarefaAdapter.setListagemTarefas(listagemTarefas);
 
         listagemTarefas = db.searchAllTarefa();
         // Inverte a ordem da lista para exibir a última tarefa
@@ -50,8 +48,8 @@ public class ListaTarefaActivity extends AppCompatActivity implements DialogClos
         tarefaAdapter.setListagemTarefas(listagemTarefas);
 
         btnAddTarefa.setOnClickListener(v -> {
-            AddTarefa frgAddTarefa = new AddTarefa();
-            frgAddTarefa.show(getSupportFragmentManager(), AddTarefa.TAG);
+            FragmentAddTarefa frgAddTarefa = new FragmentAddTarefa();
+            frgAddTarefa.show(getSupportFragmentManager(), FragmentAddTarefa.TAG);
         });
     }
 

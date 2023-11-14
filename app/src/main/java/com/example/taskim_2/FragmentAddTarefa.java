@@ -21,8 +21,8 @@ import com.example.taskim_2.Handlers.Database;
 import com.example.taskim_2.Handlers.DialogCloseListener;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-public class AddTarefa extends BottomSheetDialogFragment {
-    public static final String TAG = "AddTarefaDialog";
+public class FragmentAddTarefa extends BottomSheetDialogFragment {
+    public static final String TAG = "FragmentAddTarefa";
     private EditText edtNovaTarefa;
     private Button btnNovaTarefa;
     private Database db;
