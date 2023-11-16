@@ -1,4 +1,4 @@
-package com.example.taskim_2;
+package com.example.taskim;
 
 import androidx.appcompat.app.AppCompatActivity;
 

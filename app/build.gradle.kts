@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.taskim_2"
+    namespace = "com.example.taskim"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.taskim_2"
+        applicationId = "com.example.taskim"
         minSdk = 24
         targetSdk = 33
         versionCode = 1

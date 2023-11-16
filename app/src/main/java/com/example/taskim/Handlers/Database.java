@@ -1,4 +1,4 @@
-package com.example.taskim_2.Handlers;
+package com.example.taskim.Handlers;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.taskim_2.Dados.Tarefa;
+import com.example.taskim.Dados.Tarefa;
 
 import java.util.ArrayList;
 import java.util.List;

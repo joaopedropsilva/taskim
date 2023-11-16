@@ -1,4 +1,4 @@
-package com.example.taskim_2;
+package com.example.taskim;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -16,9 +16,9 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
-import com.example.taskim_2.Dados.Tarefa;
-import com.example.taskim_2.Handlers.Database;
-import com.example.taskim_2.Handlers.DialogCloseListener;
+import com.example.taskim.Dados.Tarefa;
+import com.example.taskim.Handlers.Database;
+import com.example.taskim.Handlers.DialogCloseListener;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class FragmentAddTarefa extends BottomSheetDialogFragment {

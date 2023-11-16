@@ -1,4 +1,4 @@
-package com.example.taskim_2;
+package com.example.taskim;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import com.example.taskim_2.Adapters.TarefaAdapter;
-import com.example.taskim_2.Dados.Tarefa;
+import com.example.taskim.Adapters.TarefaAdapter;
+import com.example.taskim.Dados.Tarefa;
 
 import java.util.List;
 

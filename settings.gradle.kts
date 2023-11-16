@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "taskim-2"
+rootProject.name = "taskim"
 include(":app")
  

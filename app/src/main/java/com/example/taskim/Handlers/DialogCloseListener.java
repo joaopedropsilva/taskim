@@ -1,4 +1,4 @@
-package com.example.taskim_2.Handlers;
+package com.example.taskim.Handlers;
 
 import android.content.DialogInterface;
 

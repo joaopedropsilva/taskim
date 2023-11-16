@@ -1,4 +1,4 @@
-package com.example.taskim_2.Dados;
+package com.example.taskim.Dados;
 
 public class Tarefa {
     private int id;

@@ -1,4 +1,4 @@
-package com.example.taskim_2.Adapters;
+package com.example.taskim.Adapters;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,11 +10,11 @@ import android.widget.CheckBox;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.taskim_2.FragmentAddTarefa;
-import com.example.taskim_2.Dados.Tarefa;
-import com.example.taskim_2.Handlers.Database;
-import com.example.taskim_2.ListaTarefaActivity;
-import com.example.taskim_2.R;
+import com.example.taskim.FragmentAddTarefa;
+import com.example.taskim.Dados.Tarefa;
+import com.example.taskim.Handlers.Database;
+import com.example.taskim.ListaTarefaActivity;
+import com.example.taskim.R;
 
 import java.util.List;
 

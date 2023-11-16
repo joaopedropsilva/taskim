@@ -1,4 +1,4 @@
-package com.example.taskim_2;
+package com.example.taskim;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.taskim_2.Adapters.TarefaAdapter;
-import com.example.taskim_2.Dados.Tarefa;
-import com.example.taskim_2.Handlers.Database;
-import com.example.taskim_2.Handlers.DialogCloseListener;
-import com.example.taskim_2.Handlers.TarefaRecyclerItemTouchHelper;
+import com.example.taskim.Adapters.TarefaAdapter;
+import com.example.taskim.Dados.Tarefa;
+import com.example.taskim.Handlers.Database;
+import com.example.taskim.Handlers.DialogCloseListener;
+import com.example.taskim.Handlers.TarefaRecyclerItemTouchHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Collections;
@@ -65,6 +65,6 @@ public class ListaTarefaActivity extends AppCompatActivity implements DialogClos
         Collections.reverse(listagemTarefas);
 
         tarefaAdapter.setListagemTarefas(listagemTarefas);
-        tarefaAdapter.notifyItemInserted(listagemTarefas.size() - 1);
+        tarefaAdapter.notifyItemInserted(0);
     }
 }

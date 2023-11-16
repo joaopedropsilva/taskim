@@ -1,4 +1,4 @@
-package com.example.taskim_2.Handlers;
+package com.example.taskim.Handlers;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -13,8 +13,8 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.taskim_2.Adapters.TarefaAdapter;
-import com.example.taskim_2.R;
+import com.example.taskim.Adapters.TarefaAdapter;
+import com.example.taskim.R;
 
 public class TarefaRecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
     private TarefaAdapter tarefaAdapter;
