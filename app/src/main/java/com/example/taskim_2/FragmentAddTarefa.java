@@ -98,6 +98,8 @@ public class FragmentAddTarefa extends BottomSheetDialogFragment {
                 Tarefa t = new Tarefa();
                 t.setConteudo(conteudo);
                 t.setStatus(false);
+
+                db.insertTarefa(t);
             }
 
             // Esconde o Dialog
@@ -109,7 +111,7 @@ public class FragmentAddTarefa extends BottomSheetDialogFragment {
     public void onDismiss(@NonNull DialogInterface dialog) {
         Activity act = getActivity();
 
-        // Verifica se a atividade em questão implement a interface que lida com
+        // Verifica se a atividade em questão implementa a interface que lida com
         // o fechamento do Dialog de AddTarefa, se for o caso, chama o método que
         // atualiza a RecyclerView com a nova tarefa
         if (act instanceof DialogCloseListener) {

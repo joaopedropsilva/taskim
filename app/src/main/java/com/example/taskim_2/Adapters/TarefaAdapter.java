@@ -1,5 +1,6 @@
 package com.example.taskim_2.Adapters;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +20,8 @@ import java.util.List;
 
 public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder> {
     private List<Tarefa> listagemTarefas;
-    private ListaTarefaActivity listaTarefaActivity;
-    private Database db;
+    private final ListaTarefaActivity listaTarefaActivity;
+    private final Database db;
 
     public TarefaAdapter(ListaTarefaActivity listaTarefaActivity, Database database) {
         this.listaTarefaActivity = listaTarefaActivity;
@@ -53,8 +54,19 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
     @Override
     public int getItemCount() { return listagemTarefas.size(); }
 
+    public Context getContext() { return listaTarefaActivity; }
+
     public void setListagemTarefas(List<Tarefa> listagemTarefas) {
         this.listagemTarefas = listagemTarefas;
+    }
+
+    public void deleteTarefaByIndex(int index) {
+        Tarefa tarefa = listagemTarefas.get(index);
+
+        db.deleteTarefa(tarefa.getId());
+        listagemTarefas.remove(index);
+
+        notifyItemRemoved(index);
     }
 
     public void editTarefaByIndex(int index) {

@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +12,7 @@ import com.example.taskim_2.Adapters.TarefaAdapter;
 import com.example.taskim_2.Dados.Tarefa;
 import com.example.taskim_2.Handlers.Database;
 import com.example.taskim_2.Handlers.DialogCloseListener;
+import com.example.taskim_2.Handlers.TarefaRecyclerItemTouchHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Collections;
@@ -36,6 +38,8 @@ public class ListaTarefaActivity extends AppCompatActivity implements DialogClos
         rvListaTarefa.setLayoutManager(new LinearLayoutManager(this));
 
         btnAddTarefa = findViewById(R.id.btnAddTarefa);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new TarefaRecyclerItemTouchHelper(tarefaAdapter));
+        itemTouchHelper.attachToRecyclerView(rvListaTarefa);
 
         tarefaAdapter = new TarefaAdapter(this, db);
         rvListaTarefa.setAdapter(tarefaAdapter);
