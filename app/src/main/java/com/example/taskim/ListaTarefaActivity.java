@@ -34,15 +34,16 @@ public class ListaTarefaActivity extends AppCompatActivity implements DialogClos
         db = new Database(this);
         db.openDb();
 
+        tarefaAdapter = new TarefaAdapter(this, db);
+
         rvListaTarefa = findViewById(R.id.rvListaTarefa);
         rvListaTarefa.setLayoutManager(new LinearLayoutManager(this));
+        rvListaTarefa.setAdapter(tarefaAdapter);
 
         btnAddTarefa = findViewById(R.id.btnAddTarefa);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new TarefaRecyclerItemTouchHelper(tarefaAdapter));
         itemTouchHelper.attachToRecyclerView(rvListaTarefa);
 
-        tarefaAdapter = new TarefaAdapter(this, db);
-        rvListaTarefa.setAdapter(tarefaAdapter);
 
         listagemTarefas = db.searchAllTarefa();
         // Inverte a ordem da lista para exibir a última tarefa

@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -25,12 +26,12 @@ public class TarefaRecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallbac
     }
 
     @Override
-    public boolean onMove(RecyclerView rvListaTarefa, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+    public boolean onMove(@NonNull RecyclerView rvListaTarefa, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
         return false;
     }
 
     @Override
-    public void onSwiped(final RecyclerView.ViewHolder viewHolder, int direction) {
+    public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder, int direction) {
         final int tarefaIndex = viewHolder.getAdapterPosition();
 
         if (direction == ItemTouchHelper.LEFT) {
