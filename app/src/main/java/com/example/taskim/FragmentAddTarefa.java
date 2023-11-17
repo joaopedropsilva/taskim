@@ -59,7 +59,6 @@ public class FragmentAddTarefa extends BottomSheetDialogFragment {
 
         if (bundleData != null) {
             isUpdateTarefa = true;
-            // pode voltar null aqui confirmar essa key
             String conteudo = bundleData.getString("conteudo");
 
             edtNovaTarefa.setText(conteudo);

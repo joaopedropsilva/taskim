@@ -19,8 +19,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class ListaTarefaActivity extends AppCompatActivity implements DialogCloseListener {
-    private RecyclerView rvListaTarefa;
-    private FloatingActionButton btnAddTarefa;
     private TarefaAdapter tarefaAdapter;
     private List<Tarefa> listagemTarefas;
 
@@ -28,6 +26,9 @@ public class ListaTarefaActivity extends AppCompatActivity implements DialogClos
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        RecyclerView rvListaTarefa;
+        FloatingActionButton btnAddTarefa;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_lista);
 
@@ -66,6 +67,6 @@ public class ListaTarefaActivity extends AppCompatActivity implements DialogClos
         Collections.reverse(listagemTarefas);
 
         tarefaAdapter.setListagemTarefas(listagemTarefas);
-        tarefaAdapter.notifyItemInserted(0);
+        tarefaAdapter.notifyDataSetChanged();
     }
 }
