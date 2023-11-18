@@ -62,28 +62,35 @@ public class Database extends SQLiteOpenHelper {
         try {
             queryResult = db.query(table_tarefa, null, null, null, null, null, null);
 
-            if (queryResult != null && queryResult.moveToFirst()) {
-                while (queryResult.moveToNext()) {
-                    int id = queryResult.getInt(queryResult
-                            .getColumnIndexOrThrow(tarefa_id));
-                    String conteudo = queryResult.getString(queryResult
-                            .getColumnIndexOrThrow(tarefa_conteudo));
-                    boolean status = queryResult.getInt(queryResult
-                            .getColumnIndexOrThrow(tarefa_status)) > 0;
+            if (queryResult != null) {
+                boolean isQueryResultNotEmpty = queryResult.moveToFirst();
 
-                    Tarefa t = new Tarefa();
-                    t.setId(id);
-                    t.setConteudo(conteudo);
-                    t.setStatus(status);
+                if (isQueryResultNotEmpty) {
+                    do {
+                        int id = queryResult.getInt(queryResult
+                                .getColumnIndexOrThrow(tarefa_id));
+                        String conteudo = queryResult.getString(queryResult
+                                .getColumnIndexOrThrow(tarefa_conteudo));
+                        boolean status = queryResult.getInt(queryResult
+                                .getColumnIndexOrThrow(tarefa_status)) > 0;
 
-                    tarefas.add(t);
+                        Tarefa t = new Tarefa();
+                        t.setId(id);
+                        t.setConteudo(conteudo);
+                        t.setStatus(status);
+
+                        tarefas.add(t);
+                    } while (queryResult.moveToNext());
                 }
             }
         } catch (Exception error) {
-            Log.d("Database", "Falha ao ler dados do banco", null);
+            Log.d("Database", error.getMessage(), null);
         } finally {
             db.endTransaction();
-            queryResult.close();
+
+            if (queryResult != null) {
+                queryResult.close();
+            }
         }
 
         return tarefas;
