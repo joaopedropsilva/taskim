@@ -30,7 +30,7 @@ public class ListaTarefaActivity extends AppCompatActivity implements DialogClos
         FloatingActionButton btnAddTarefa;
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lista);
+        setContentView(R.layout.lista_tarefa);
 
         db = new Database(this);
         db.openDb();
