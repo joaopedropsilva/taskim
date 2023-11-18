@@ -36,7 +36,7 @@ public class FragmentAddTarefa extends BottomSheetDialogFragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.layout_nova_tarefa, viewGroup, false);
+        View view = inflater.inflate(R.layout.nova_tarefa, viewGroup, false);
 
         // Permite que o fragmento ajuste seu tamanho de acordo com o input do usuário
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);

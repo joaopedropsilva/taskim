@@ -32,7 +32,7 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.layout_tarefa, parent, false);
+                .inflate(R.layout.tarefa, parent, false);
         return new ViewHolder(v);
     }
 
