@@ -17,8 +17,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         Runnable startMainActivityRunnable = new Runnable() {
             @Override
             public void run() {
-                // Trocar para MainActivity.class
-                Intent mainActivityIntent = new Intent(SplashScreenActivity.this, ListaTarefaActivity.class);
+                Intent mainActivityIntent = new Intent(
+                        SplashScreenActivity.this,
+                        ListagemListasActivity.class);
 
                 startActivity(mainActivityIntent);
 
