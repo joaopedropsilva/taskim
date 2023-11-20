@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.taskim.Dados.Lista;
 import com.example.taskim.Dados.Tarefa;
 
 import java.util.ArrayList;
@@ -24,6 +25,16 @@ public class Database extends SQLiteOpenHelper {
                     tarefa_id + " integer primary key autoincrement," +
                     tarefa_conteudo + " text," +
                     tarefa_status + " bit)";
+    private static final String table_lista = "lista";
+    private static final String lista_id = "id";
+    private static final String lista_nome = "nome";
+    private static final String lista_status = "status";
+    private static final String query_create_table_lista =
+            "create table " + table_lista + "(" +
+                    lista_id + " integer primary key autoincrement," +
+                    lista_nome + " text," +
+                    lista_status + " bit)";
+
     private SQLiteDatabase db;
 
     public Database(Context context) {
@@ -33,11 +44,13 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(query_create_table_tarefa);
+        db.execSQL(query_create_table_lista);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {
         db.execSQL("drop table if exists " + table_tarefa);
+        db.execSQL("drop table if exists " + table_lista);
         onCreate(db);
     }
 
@@ -118,5 +131,60 @@ public class Database extends SQLiteOpenHelper {
 
     public void deleteTarefa(int id_tarefa) {
         db.delete(table_tarefa, tarefa_id + "=?", new String[] { String.valueOf(id_tarefa) });
+    }
+
+    public void insertLista(Lista lista) {
+        ContentValues record = new ContentValues();
+        record.put(lista_nome, lista.getNome());
+        record.put(lista_status, false);
+
+        db.insert(table_lista, null, record);
+    }
+
+    public List<Lista> searchAllListas() {
+        Cursor queryResult = null;
+        List<Lista> listas = new ArrayList<>();
+
+        db.beginTransaction();
+
+        try {
+            queryResult = db.query(table_lista, null, null, null, null, null, null);
+
+            if (queryResult != null) {
+                boolean isQueryResultNotEmpty = queryResult.moveToFirst();
+
+                if (isQueryResultNotEmpty) {
+                    do {
+                        int id = queryResult.getInt(queryResult
+                                .getColumnIndexOrThrow(lista_id));
+                        String nome = queryResult.getString(queryResult
+                                .getColumnIndexOrThrow(lista_nome));
+                        boolean status = queryResult.getInt(queryResult
+                                .getColumnIndexOrThrow(lista_status)) > 0;
+
+                        Lista l = new Lista();
+                        l.setId(id);
+                        l.setNome(nome);
+                        l.setStatus(status);
+
+                        listas.add(l);
+                    } while (queryResult.moveToNext());
+                }
+            }
+        } catch (Exception error) {
+            Log.d("Database", error.getMessage(), null);
+        } finally {
+            db.endTransaction();
+
+            if (queryResult != null) {
+                queryResult.close();
+            }
+        }
+
+        return listas;
+    }
+
+    public void deleteLista(int idLista) {
+        db.delete(table_lista, lista_id + "=?", new String[] { String.valueOf(idLista) });
     }
 }
