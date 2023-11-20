@@ -2,6 +2,7 @@ package com.example.taskim;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -56,15 +57,21 @@ public class ListagemListasActivity extends AppCompatActivity implements DialogE
         listasAdapter.setListagemListas(listagemListas);
 
         btnAddLista.setOnClickListener(v -> {
-            DialogEditText dialog = new DialogEditText(
-                    String.valueOf(R.string.dialog_add_lista_title));
+            DialogEditText dialog = new DialogEditText("Adicionar nova lista");
             dialog.show(getSupportFragmentManager(), DialogEditText.TAG);
         });
     }
 
     @Override
-    public void onDialogPositiveClick(DialogFragment dialogAddLista) {
+    public void onDialogPositiveClick(DialogFragment dialogLista) {
+        EditText edtDialogLista = dialogLista.getDialog().findViewById(R.id.edtInput);
+
+        if (edtDialogLista != null) {
+            String nomeLista = edtDialogLista.getText().toString();
+
+            listasAdapter.addLista(nomeLista);
+        }
     }
     @Override
-    public void onDialogNegativeClick(DialogFragment dialogAddLista) {}
+    public void onDialogNegativeClick(DialogFragment dialogLista) {}
 }

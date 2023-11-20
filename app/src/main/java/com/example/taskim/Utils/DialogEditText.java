@@ -20,7 +20,6 @@ import com.example.taskim.R;
     private final String dialogTitle;
     private DialogEditTextListener listener;
 
-
     public DialogEditText(String dialogTitle) {
         this.dialogTitle = dialogTitle;
     }

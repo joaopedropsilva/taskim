@@ -13,9 +13,6 @@
         android:theme="@style/Theme.Taskim"
         tools:targetApi="31">
         <activity
-            android:name=".ListaTarefaActivity"
-            android:exported="false" />
-        <activity
             android:name=".SplashScreenActivity"
             android:exported="true"
             android:label="@string/title_activity_splash_screen"
@@ -27,8 +24,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ListagemListasActivity"
             android:exported="true" />
+        <activity
+            android:name=".ListaTarefaActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

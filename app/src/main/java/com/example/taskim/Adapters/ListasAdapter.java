@@ -1,7 +1,6 @@
 package com.example.taskim.Adapters;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.taskim.Dados.Lista;
-import com.example.taskim.FragmentAddLista;
 import com.example.taskim.Handlers.Database;
 import com.example.taskim.ListagemListasActivity;
 import com.example.taskim.R;
 
 import java.util.List;
 
-public class ListasAdapter extends RecyclerView.Adapter<ListasAdapter.ViewHolder>{
+public class ListasAdapter extends RecyclerView.Adapter<ListasAdapter.ViewHolder> {
     private List<Lista> listagemListas;
     private final ListagemListasActivity listagemListasActivity;
     private final Database db;
@@ -70,6 +68,14 @@ public class ListasAdapter extends RecyclerView.Adapter<ListasAdapter.ViewHolder
         this.listagemListas = listagemListas;
     }
 
+    public void addLista(String nome) {
+        Lista lista = new Lista();
+        lista.setNome(nome);
+        lista.setStatus(false);
+
+        db.insertLista(lista);
+    }
+
     public void deleteListaByIndex(int index) {
         Lista lista = listagemListas.get(index);
 
@@ -81,15 +87,5 @@ public class ListasAdapter extends RecyclerView.Adapter<ListasAdapter.ViewHolder
 
     public void editListaByIndex(int index) {
         Lista lista = listagemListas.get(index);
-
-        // Passagem de dados da lista vindos da RecyclerView
-        // para o fragmento que permite a edição da lista, por meio de um bundle
-        Bundle bundle = new Bundle();
-        bundle.putInt("id", lista.getId());
-        bundle.putString("nome", lista.getNome());
-
-        FragmentAddLista frgAddLista = new FragmentAddLista();
-        frgAddLista.setArguments(bundle);
-        frgAddLista.show(listagemListasActivity.getSupportFragmentManager(), FragmentAddLista.TAG);
     }
 }
