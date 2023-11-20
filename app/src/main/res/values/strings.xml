@@ -2,4 +2,5 @@
     <string name="app_name">taskim</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="nova_lista_tarefa">Nova Lista</string>
+    <string name="dialog_add_lista_title">Adicionar nova lista</string>
 </resources>
