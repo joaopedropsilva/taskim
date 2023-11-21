@@ -1,5 +1,6 @@
 package com.example.taskim;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.EditText;
 
@@ -20,7 +21,8 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import java.util.Collections;
 import java.util.List;
 
-public class ListagemListasActivity extends AppCompatActivity implements DialogEditText.DialogEditTextListener {
+public class ListagemListasActivity extends AppCompatActivity
+        implements DialogEditText.DialogEditTextListener {
     private ListasAdapter listasAdapter;
     private List<Lista> listagemListas;
     private Database db;
@@ -62,15 +64,29 @@ public class ListagemListasActivity extends AppCompatActivity implements DialogE
     }
 
     @Override
-    public void onDialogPositiveClick(DialogFragment dialogLista) {
-        EditText edtDialogLista = dialogLista.getDialog().findViewById(R.id.edtInput);
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        EditText edtDialogLista = dialog.getDialog().findViewById(R.id.edtInput);
 
         if (edtDialogLista != null) {
             String nomeLista = edtDialogLista.getText().toString();
 
             listasAdapter.addLista(nomeLista);
+
+            // Esconde o Dialog
+            dialog.getDialog().dismiss();
         }
     }
     @Override
-    public void onDialogNegativeClick(DialogFragment dialogLista) {}
+    public void onDialogNegativeClick(DialogFragment dialog) {}
+
+    @Override
+    public void handleDialogClose(DialogInterface dialog) {
+        listagemListas = db.searchAllListas();
+        // Inverte a ordem da lista para exibir a última tarefa
+        // adicionada em primeiro lugar
+        Collections.reverse(listagemListas);
+
+        listasAdapter.setListagemListas(listagemListas);
+        listasAdapter.notifyDataSetChanged();
+    }
 }
