@@ -1,6 +1,5 @@
 package com.example.taskim;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.EditText;
 
@@ -14,7 +13,7 @@ import com.example.taskim.Adapters.ListasAdapter;
 import com.example.taskim.Dados.Lista;
 import com.example.taskim.Handlers.Database;
 import com.example.taskim.Handlers.DialogCloseListener;
-//import com.example.taskim.Handlers.ListaRecyclerItemTouchHelper;
+import com.example.taskim.Helpers.ListaRecyclerItemTouchHelper;
 import com.example.taskim.Utils.DialogEditText;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
@@ -44,9 +43,9 @@ public class ListagemListasActivity extends AppCompatActivity implements DialogE
         rvListagemListas.setAdapter(listasAdapter);
 
         btnAddLista = findViewById(R.id.btnAddLista);
-        //ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
-                //new ListaRecyclerItemTouchHelper(listasAdapter));
-        //itemTouchHelper.attachToRecyclerView(rvListagemListas);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
+                new ListaRecyclerItemTouchHelper(listasAdapter));
+        itemTouchHelper.attachToRecyclerView(rvListagemListas);
 
 
         listagemListas = db.searchAllListas();
