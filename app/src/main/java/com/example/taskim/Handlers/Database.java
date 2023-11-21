@@ -109,28 +109,28 @@ public class Database extends SQLiteOpenHelper {
         return tarefas;
     }
 
-    public void udpateStatusTarefa(int id_tarefa, boolean status) {
+    public void udpateStatusTarefa(int idTarefa, boolean status) {
         ContentValues record = new ContentValues();
         record.put(tarefa_status, status);
 
         db.update(table_tarefa,
                     record,
                     tarefa_id + "=?",
-                    new String[] { String.valueOf(id_tarefa) });
+                    new String[] { String.valueOf(idTarefa) });
     }
 
-    public void udpateConteudoTarefa(int id_tarefa, String conteudo) {
+    public void udpateConteudoTarefa(int idTarefa, String conteudo) {
         ContentValues record = new ContentValues();
         record.put(tarefa_conteudo, conteudo);
 
         db.update(table_tarefa,
                 record,
                 tarefa_id + "=?",
-                new String[] { String.valueOf(id_tarefa) });
+                new String[] { String.valueOf(idTarefa) });
     }
 
-    public void deleteTarefa(int id_tarefa) {
-        db.delete(table_tarefa, tarefa_id + "=?", new String[] { String.valueOf(id_tarefa) });
+    public void deleteTarefa(int idTarefa) {
+        db.delete(table_tarefa, tarefa_id + "=?", new String[] { String.valueOf(idTarefa) });
     }
 
     public void insertLista(Lista lista) {
@@ -182,6 +182,26 @@ public class Database extends SQLiteOpenHelper {
         }
 
         return listas;
+    }
+
+    public void udpateStatusLista(int idLista, boolean status) {
+        ContentValues record = new ContentValues();
+        record.put(lista_status, status);
+
+        db.update(table_lista,
+                record,
+                lista_id + "=?",
+                new String[] { String.valueOf(idLista) });
+    }
+
+    public void updateNomeLista(int idLista, String nome) {
+        ContentValues record = new ContentValues();
+        record.put(lista_nome, nome);
+
+        db.update(table_lista,
+                record,
+                lista_id + "=?",
+                new String[] { String.valueOf(idLista) });
     }
 
     public void deleteLista(int idLista) {
