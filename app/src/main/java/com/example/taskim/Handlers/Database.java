@@ -16,15 +16,6 @@ import java.util.List;
 public class Database extends SQLiteOpenHelper {
     private static final int version = 1;
     private static final String name = "taskimdb";
-    private static final String table_tarefa = "tarefa";
-    private static final String tarefa_id = "id";
-    private static final String tarefa_conteudo = "conteudo";
-    private static final String tarefa_status = "status";
-    private static final String query_create_table_tarefa =
-            "create table " + table_tarefa + "(" +
-                    tarefa_id + " integer primary key autoincrement," +
-                    tarefa_conteudo + " text," +
-                    tarefa_status + " bit)";
     private static final String table_lista = "lista";
     private static final String lista_id = "id";
     private static final String lista_nome = "nome";
@@ -34,6 +25,19 @@ public class Database extends SQLiteOpenHelper {
                     lista_id + " integer primary key autoincrement," +
                     lista_nome + " text," +
                     lista_status + " bit)";
+    private static final String table_tarefa = "tarefa";
+    private static final String tarefa_id = "id";
+    private static final String tarefa_conteudo = "conteudo";
+    private static final String tarefa_status = "status";
+    private static final String lista_id_fk_column = "id_lista";
+    private static final String query_create_table_tarefa =
+            "create table " + table_tarefa + "(" +
+                    tarefa_id + " integer primary key autoincrement," +
+                    tarefa_conteudo + " text," +
+                    tarefa_status + " bit," +
+                    lista_id_fk_column + " integer," +
+                    "foreign key(" + lista_id_fk_column + ") references " +
+                    table_lista + "(" + lista_id + ") on delete cascade)";
 
     private SQLiteDatabase db;
 
@@ -42,9 +46,14 @@ public class Database extends SQLiteOpenHelper {
     }
 
     @Override
+    public void onConfigure(SQLiteDatabase db) {
+        db.setForeignKeyConstraintsEnabled(true);
+    }
+
+    @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(query_create_table_tarefa);
         db.execSQL(query_create_table_lista);
+        db.execSQL(query_create_table_tarefa);
     }
 
     @Override
