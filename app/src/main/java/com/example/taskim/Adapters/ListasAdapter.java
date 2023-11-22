@@ -21,6 +21,10 @@ public class ListasAdapter extends RecyclerView.Adapter<ListasAdapter.ViewHolder
     private final ListagemListasActivity listagemListasActivity;
     private final Database db;
 
+    public List<Lista> getListagemListas() {
+        return listagemListas;
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvLista;
 
@@ -85,7 +89,7 @@ public class ListasAdapter extends RecyclerView.Adapter<ListasAdapter.ViewHolder
         notifyItemRemoved(index);
     }
 
-    public void editListaByIndex(int index) {
-        Lista lista = listagemListas.get(index);
+    public void editLista(Lista lista) {
+        db.updateNomeLista(lista.getId(), lista.getNome());
     }
 }

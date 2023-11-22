@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -13,7 +14,10 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.taskim.Adapters.ListasAdapter;
+import com.example.taskim.Dados.Lista;
+import com.example.taskim.ListagemListasActivity;
 import com.example.taskim.R;
+import com.example.taskim.Utils.DialogEditText;
 
 public class ListaRecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
     private final ListasAdapter listasAdapter;
@@ -35,17 +39,30 @@ public class ListaRecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback
         final int listaIndex = viewHolder.getAdapterPosition();
 
         if (direction == ItemTouchHelper.LEFT) {
-            AlertDialog.Builder confirmDialogBuilder = new AlertDialog.Builder(listasAdapter.getContext());
-            confirmDialogBuilder.setMessage("Deletar lista?");
-            confirmDialogBuilder.setPositiveButton("Sim", (dialog, which) ->
+            AlertDialog.Builder builder = new AlertDialog.Builder(listasAdapter.getContext());
+            builder.setMessage("Deletar lista?");
+            builder.setPositiveButton("Sim", (dialog, which) ->
                     listasAdapter.deleteListaByIndex(listaIndex));
-            confirmDialogBuilder.setNegativeButton("Não", (dialog, which) ->
+            builder.setNegativeButton("Não", (dialog, which) ->
                     listasAdapter.notifyItemChanged(viewHolder.getAdapterPosition()));
 
-            AlertDialog confirmDialog = confirmDialogBuilder.create();
-            confirmDialog.show();
+            AlertDialog dialogDeleteLista = builder.create();
+            dialogDeleteLista.show();
         } else {
-            listasAdapter.editListaByIndex(listaIndex);
+            Lista lista = listasAdapter.getListagemListas().get(listaIndex);
+            Bundle listaInformartion = new Bundle();
+            listaInformartion.putInt("id", lista.getId());
+            listaInformartion.putString("nome", lista.getNome());
+            listaInformartion.putString("operation", "edit");
+
+            DialogEditText dialogEditLista = new DialogEditText(
+                    "Editar nome da lista",
+                     "Salvar",
+                    "Cancelar");
+            dialogEditLista.setArguments(listaInformartion);
+
+            ListagemListasActivity activity = (ListagemListasActivity) listasAdapter.getContext();
+            dialogEditLista.show(activity.getSupportFragmentManager(), DialogEditText.TAG);
         }
     }
 

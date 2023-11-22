@@ -20,15 +20,19 @@ import com.example.taskim.R;
         public void handleDialogClose(DialogInterface dialog);
     }
     public static final String TAG = "DialogDialogEditText";
-    private final String dialogTitle;
+    private final String title;
+    private final String positiveClickText;
+    private final String negativeClickText;
     private DialogEditTextListener listener;
 
-    public DialogEditText(String dialogTitle) {
-        this.dialogTitle = dialogTitle;
+    public DialogEditText(String title, String positiveClickText, String negativeClickText) {
+        this.title = title;
+        this.positiveClickText = positiveClickText;
+        this.negativeClickText = negativeClickText;
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
         try {
@@ -44,12 +48,12 @@ import com.example.taskim.R;
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater layoutInflater = requireActivity().getLayoutInflater();
 
-        builder.setTitle(dialogTitle)
+        builder.setTitle(title)
                 .setView(layoutInflater.inflate(R.layout.dialog_edit_text, null))
-                .setPositiveButton("Adicionar", (dialog, which) -> {
+                .setPositiveButton(positiveClickText, (dialog, which) -> {
                     listener.onDialogPositiveClick(DialogEditText.this);
                 })
-                .setNegativeButton("Cancelar", (dialog, which) -> {
+                .setNegativeButton(negativeClickText, (dialog, which) -> {
                     listener.onDialogNegativeClick(DialogEditText.this);
                 });
 
