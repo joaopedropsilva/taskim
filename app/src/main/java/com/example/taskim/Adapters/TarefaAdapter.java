@@ -22,10 +22,12 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
     private List<Tarefa> listagemTarefas;
     private final ListaTarefaActivity listaTarefaActivity;
     private final Database db;
+    private final int idLista;
 
-    public TarefaAdapter(ListaTarefaActivity listaTarefaActivity, Database database) {
+    public TarefaAdapter(ListaTarefaActivity listaTarefaActivity, Database database, int idLista) {
         this.listaTarefaActivity = listaTarefaActivity;
         this.db = database;
+        this.idLista = idLista;
     }
 
     @NonNull

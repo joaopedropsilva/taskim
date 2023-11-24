@@ -58,13 +58,17 @@ public class FragmentAddTarefa extends BottomSheetDialogFragment {
         final Bundle bundleData = getArguments();
 
         if (bundleData != null) {
-            isUpdateTarefa = true;
             String conteudo = bundleData.getString("conteudo");
 
-            edtNovaTarefa.setText(conteudo);
+            if (conteudo != null) {
+                isUpdateTarefa = true;
+                edtNovaTarefa.setText(conteudo);
 
-            if (conteudo != null && conteudo.length() > 0) {
-                btnNovaTarefa.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary));
+                if (conteudo.length() > 0) {
+                    btnNovaTarefa.setTextColor(
+                            ContextCompat.getColor(requireContext(),
+                            R.color.colorPrimary));
+                }
             }
         }
 
@@ -94,11 +98,13 @@ public class FragmentAddTarefa extends BottomSheetDialogFragment {
             if (finalIsUpdateTarefa) {
                 db.udpateConteudoTarefa(bundleData.getInt("id"), conteudo);
             } else {
+                int idLista = bundleData.getInt("id_lista");
+
                 Tarefa t = new Tarefa();
                 t.setConteudo(conteudo);
                 t.setStatus(false);
 
-                db.insertTarefa(t);
+                db.insertTarefa(t, idLista);
             }
 
             // Esconde o Dialog

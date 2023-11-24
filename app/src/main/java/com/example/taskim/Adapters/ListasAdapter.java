@@ -1,6 +1,8 @@
 package com.example.taskim.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.taskim.Dados.Lista;
 import com.example.taskim.Handlers.Database;
+import com.example.taskim.ListaTarefaActivity;
 import com.example.taskim.ListagemListasActivity;
 import com.example.taskim.R;
 
@@ -59,6 +62,21 @@ public class ListasAdapter extends RecyclerView.Adapter<ListasAdapter.ViewHolder
 
         TextView tv = viewHolder.getTvLista();
         tv.setText(lista.getNome());
+
+        tv.setOnClickListener(v -> {
+            Handler handler = new Handler();
+            Runnable startListaTarefaActivity = () -> {
+                Intent intent = new Intent(
+                        listagemListasActivity,
+                        ListaTarefaActivity.class);
+                intent.putExtra("id_lista", lista.getId());
+                intent.putExtra("nome_lista", lista.getNome());
+
+                listagemListasActivity.startActivity(intent);
+            };
+
+            handler.post(startListaTarefaActivity);
+        });
 
         // Implementar recepção de dados sobre as tarefas concluídas
     }

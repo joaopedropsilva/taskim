@@ -67,22 +67,27 @@ public class Database extends SQLiteOpenHelper {
         this.db = this.getWritableDatabase();
     }
 
-    public void insertTarefa(Tarefa tarefa) {
+    public void insertTarefa(Tarefa tarefa, int idLista) {
         ContentValues record = new ContentValues();
         record.put(tarefa_conteudo, tarefa.getConteudo());
         record.put(tarefa_status, false);
+        record.put(lista_id_fk_column, idLista);
 
         db.insert(table_tarefa, null, record);
     }
 
-    public List<Tarefa> searchAllTarefa() {
+    public List<Tarefa> searchAllTarefaByIdLista(int idLista) {
         Cursor queryResult = null;
         List<Tarefa> tarefas = new ArrayList<>();
 
         db.beginTransaction();
 
         try {
-            queryResult = db.query(table_tarefa, null, null, null, null, null, null);
+            queryResult = db.query(
+                    table_tarefa,
+                    null,
+                    lista_id_fk_column + "=" + idLista,
+                    null, null, null, null);
 
             if (queryResult != null) {
                 boolean isQueryResultNotEmpty = queryResult.moveToFirst();
