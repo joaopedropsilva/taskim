@@ -67,8 +67,8 @@ import com.example.taskim.R;
         // Verifica se a atividade em questão implementa a interface que lida com
         // o fechamento do Dialog de AddTarefa, se for o caso, chama o método que
         // atualiza a RecyclerView com a nova tarefa
-        if (act instanceof DialogEditText.DialogEditTextListener) {
-            ((DialogEditText.DialogEditTextListener) act).handleDialogClose(dialog);
+        if (act instanceof DialogEditTextListener) {
+            ((DialogEditTextListener) act).handleDialogClose(dialog);
         }
     }
 }

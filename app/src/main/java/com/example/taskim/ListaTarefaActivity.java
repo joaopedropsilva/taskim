@@ -13,7 +13,6 @@ import com.example.taskim.Adapters.TarefaAdapter;
 import com.example.taskim.Dados.Tarefa;
 import com.example.taskim.Fragments.FragmentAddTarefa;
 import com.example.taskim.Handlers.Database;
-import com.example.taskim.Handlers.DialogCloseListener;
 import com.example.taskim.Helpers.TarefaRecyclerItemTouchHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -23,7 +22,8 @@ import java.util.List;
 // Classe responsável pelo comportamento da atividade
 // que exibe uma lista de tarefas de uma das listas
 // previamente selecionadas na atividade principal
-public class ListaTarefaActivity extends AppCompatActivity implements DialogCloseListener {
+public class ListaTarefaActivity extends AppCompatActivity
+        implements FragmentAddTarefa.FragmentAddTarefaListener {
     private TarefaAdapter tarefaAdapter;
     private List<Tarefa> listagemTarefas;
     private Database db;
@@ -113,9 +113,9 @@ public class ListaTarefaActivity extends AppCompatActivity implements DialogClos
 
     // Implementação da callback necessária para o uso do FragmentAddTarefa
     // (fragmento de Dialog para adição/edição de tarefas) declaradas
-    // na interface DialogCloseListener
+    // na interface FragmentAddTarefa.FragmentAddTarefaListener
     @Override
-    public void handleDialogClose(DialogInterface dialogAddTarefa) {
+    public void handleDialogClose(DialogInterface dialog) {
         // Busca no banco refeita para exibir possíveis
         // novas tarefas adicionadas
         listagemTarefas = db.searchAllTarefaByIdLista(idLista);

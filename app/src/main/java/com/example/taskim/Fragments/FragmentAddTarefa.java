@@ -18,11 +18,13 @@ import androidx.core.content.ContextCompat;
 
 import com.example.taskim.Dados.Tarefa;
 import com.example.taskim.Handlers.Database;
-import com.example.taskim.Handlers.DialogCloseListener;
 import com.example.taskim.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class FragmentAddTarefa extends BottomSheetDialogFragment {
+    public interface FragmentAddTarefaListener {
+        public void handleDialogClose(DialogInterface dialog);
+    }
     public static final String TAG = "FragmentAddTarefa";
     private EditText edtNovaTarefa;
     private Button btnNovaTarefa;
@@ -120,8 +122,8 @@ public class FragmentAddTarefa extends BottomSheetDialogFragment {
         // Verifica se a atividade em questão implementa a interface que lida com
         // o fechamento do Dialog de AddTarefa, se for o caso, chama o método que
         // atualiza a RecyclerView com a nova tarefa
-        if (act instanceof DialogCloseListener) {
-            ((DialogCloseListener) act).handleDialogClose(dialog);
+        if (act instanceof FragmentAddTarefaListener) {
+            ((FragmentAddTarefaListener) act).handleDialogClose(dialog);
         }
     }
 }
