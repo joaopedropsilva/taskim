@@ -16,7 +16,7 @@ import com.example.taskim.Adapters.ListasAdapter;
 import com.example.taskim.Dados.Lista;
 import com.example.taskim.Handlers.Database;
 import com.example.taskim.Helpers.ListaRecyclerItemTouchHelper;
-import com.example.taskim.Utils.DialogEditText;
+import com.example.taskim.Fragments.DialogEditText;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import java.util.Collections;

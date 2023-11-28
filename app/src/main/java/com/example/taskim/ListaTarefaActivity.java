@@ -11,9 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.taskim.Adapters.TarefaAdapter;
 import com.example.taskim.Dados.Tarefa;
+import com.example.taskim.Fragments.FragmentAddTarefa;
 import com.example.taskim.Handlers.Database;
 import com.example.taskim.Handlers.DialogCloseListener;
-import com.example.taskim.Handlers.TarefaRecyclerItemTouchHelper;
+import com.example.taskim.Helpers.TarefaRecyclerItemTouchHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Collections;

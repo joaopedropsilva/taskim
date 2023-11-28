@@ -17,7 +17,7 @@ import com.example.taskim.Adapters.ListasAdapter;
 import com.example.taskim.Dados.Lista;
 import com.example.taskim.ListagemListasActivity;
 import com.example.taskim.R;
-import com.example.taskim.Utils.DialogEditText;
+import com.example.taskim.Fragments.DialogEditText;
 
 public class ListaRecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
     private final ListasAdapter listasAdapter;

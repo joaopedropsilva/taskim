@@ -10,7 +10,7 @@ import android.widget.CheckBox;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.taskim.FragmentAddTarefa;
+import com.example.taskim.Fragments.FragmentAddTarefa;
 import com.example.taskim.Dados.Tarefa;
 import com.example.taskim.Handlers.Database;
 import com.example.taskim.ListaTarefaActivity;
