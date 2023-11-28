@@ -6,6 +6,7 @@
         android:id="@+id/edtNovaTarefa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="12dp"
         android:background="@null"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:hint="Nova tarefa"/>
