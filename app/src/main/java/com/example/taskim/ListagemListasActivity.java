@@ -6,6 +6,8 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -68,6 +70,18 @@ public class ListagemListasActivity extends AppCompatActivity
 
             dialog.show(getSupportFragmentManager(), DialogEditText.TAG);
         });
+    }
+
+    @Override
+    public void onResumeFragments() {
+        super.onResumeFragments();
+
+        FragmentManager frgManager = getSupportFragmentManager();
+        Fragment fragment = frgManager.findFragmentByTag(DialogEditText.TAG);
+
+        if (fragment != null) {
+            frgManager.beginTransaction().remove(fragment).commit();
+        }
     }
 
     @Override
