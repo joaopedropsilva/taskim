@@ -15,9 +15,9 @@ import com.example.taskim.R;
 
     public class DialogEditText extends DialogFragment {
     public interface DialogEditTextListener {
-        public void onDialogPositiveClick(DialogFragment dialog);
-        public void onDialogNegativeClick(DialogFragment dialog);
-        public void handleDialogClose(DialogInterface dialog);
+        void onDialogPositiveClick(DialogFragment dialog);
+        void onDialogNegativeClick(DialogFragment dialog);
+        void handleDialogClose(DialogInterface dialog);
     }
     public static final String TAG = "DialogDialogEditText";
     private final String title;
@@ -49,7 +49,9 @@ import com.example.taskim.R;
         LayoutInflater layoutInflater = requireActivity().getLayoutInflater();
 
         builder.setTitle(title)
+                // Preenchimento da view com o layout do fragmento
                 .setView(layoutInflater.inflate(R.layout.dialog_edit_text, null))
+                // Callbacks do botão de sucesso e cancelar
                 .setPositiveButton(positiveClickText, (dialog, which) -> {
                     listener.onDialogPositiveClick(DialogEditText.this);
                 })
@@ -64,9 +66,8 @@ import com.example.taskim.R;
     public void onDismiss(@NonNull DialogInterface dialog) {
         Activity act = getActivity();
 
-        // Verifica se a atividade em questão implementa a interface que lida com
-        // o fechamento do Dialog de AddTarefa, se for o caso, chama o método que
-        // atualiza a RecyclerView com a nova tarefa
+        // Verifica se a atividade em questão implementa
+        // a interface que lida com o fechamento do Dialog
         if (act instanceof DialogEditTextListener) {
             ((DialogEditTextListener) act).handleDialogClose(dialog);
         }
