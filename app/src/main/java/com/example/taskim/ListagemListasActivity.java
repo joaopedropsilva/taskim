@@ -108,16 +108,14 @@ public class ListagemListasActivity extends AppCompatActivity
         super.onResumeFragments();
 
         // Instanciação do manager de fragmentos
-        // e coleta do fragmento indesejado
+        // e coleta os fragmentos indesejados
         FragmentManager frgManager = getSupportFragmentManager();
-        Fragment fragment = frgManager.findFragmentByTag(DialogEditText.TAG);
+        List<Fragment> fragments = frgManager.getFragments();
 
-        // Verificação para inicialização do aplicativo
-        // quando não há fragmentos abertos
-        if (fragment != null) {
+        for (Fragment frg: fragments) {
             // Execução da transação que remove
             // o fragmento indesejado da tela
-            frgManager.beginTransaction().remove(fragment).commit();
+            frgManager.beginTransaction().remove(frg).commit();
         }
     }
 
