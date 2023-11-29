@@ -60,7 +60,7 @@ public class ListaTarefaActivity extends AppCompatActivity
 
         // Instanciação do adapter responsável
         // pela lógica das tarefas de uma lista
-        tarefaAdapter = new TarefaAdapter(this, db, idLista);
+        tarefaAdapter = new TarefaAdapter(this, db);
 
         // Inicialização da RecyclerView de tarefas a partir do layout
         rvListaTarefa = findViewById(R.id.rvListaTarefa);

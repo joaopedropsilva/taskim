@@ -56,19 +56,29 @@ public class ListasAdapter extends RecyclerView.Adapter<ListasAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ListasAdapter.ViewHolder viewHolder, int position) {
+        // Inicialização do banco de dados
         db.openDb();
 
+        // Recuperação da lista de tarefas em questão
         Lista lista = listagemListas.get(position);
 
         TextView tv = viewHolder.getTvLista();
         tv.setText(lista.getNome());
 
+        // Listener de clique na TextView de lista de tarefas
+        // que chama a atividade de ListaTarefaActivity para a
+        // exibição das tarefas da lista
         tv.setOnClickListener(v -> {
             Handler handler = new Handler();
             Runnable startListaTarefaActivity = () -> {
                 Intent intent = new Intent(
                         listagemListasActivity,
                         ListaTarefaActivity.class);
+
+                // Inserção de argumentos no intent
+                // para que a atividade seja incializada
+                // corretamente e as tarefas estejam vinculadas
+                // a lista correta
                 intent.putExtra("id_lista", lista.getId());
                 intent.putExtra("nome_lista", lista.getNome());
 
@@ -77,8 +87,6 @@ public class ListasAdapter extends RecyclerView.Adapter<ListasAdapter.ViewHolder
 
             handler.post(startListaTarefaActivity);
         });
-
-        // Implementar recepção de dados sobre as tarefas concluídas
     }
 
     @Override

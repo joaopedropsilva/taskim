@@ -22,12 +22,23 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
     private List<Tarefa> listagemTarefas;
     private final ListaTarefaActivity listaTarefaActivity;
     private final Database db;
-    private final int idLista;
 
-    public TarefaAdapter(ListaTarefaActivity listaTarefaActivity, Database database, int idLista) {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        private final CheckBox chkTarefa;
+
+        public CheckBox getChkTarefa() {
+            return chkTarefa;
+        }
+
+        public ViewHolder(View v) {
+            super(v);
+            chkTarefa = v.findViewById(R.id.chkTarefa);
+        }
+    }
+
+    public TarefaAdapter(ListaTarefaActivity listaTarefaActivity, Database database) {
         this.listaTarefaActivity = listaTarefaActivity;
         this.db = database;
-        this.idLista = idLista;
     }
 
     @NonNull
@@ -40,14 +51,20 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+        // Inicialização do banco de dados
         db.openDb();
 
+        // Recuperação da tarefa em questão
         Tarefa tarefa = listagemTarefas.get(position);
 
+        // Inicialização da Checkbox
+        // com as informações da tarefa
         CheckBox chk = viewHolder.getChkTarefa();
         chk.setText(tarefa.getConteudo());
         chk.setChecked(tarefa.getStatus());
 
+        // Listener de clique na Checkbox da tarefa
+        // que atualiza o status dela ao ser clicado
         chk.setOnCheckedChangeListener((buttonView, isChecked) -> {
             db.udpateStatusTarefa(tarefa.getId(), isChecked);
         });
@@ -82,19 +99,7 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
 
         FragmentAddTarefa frgFragmentAddTarefa = new FragmentAddTarefa();
         frgFragmentAddTarefa.setArguments(bundle);
-        frgFragmentAddTarefa.show(listaTarefaActivity.getSupportFragmentManager(), FragmentAddTarefa.TAG);
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-         private final CheckBox chkTarefa;
-
-        public CheckBox getChkTarefa() {
-            return chkTarefa;
-        }
-
-        public ViewHolder(View v) {
-            super(v);
-            chkTarefa = v.findViewById(R.id.chkTarefa);
-        }
+        frgFragmentAddTarefa.show(
+                listaTarefaActivity.getSupportFragmentManager(), FragmentAddTarefa.TAG);
     }
 }
