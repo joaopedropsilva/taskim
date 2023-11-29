@@ -93,7 +93,6 @@ public class ListasAdapter extends RecyclerView.Adapter<ListasAdapter.ViewHolder
     public void addLista(String nome) {
         Lista lista = new Lista();
         lista.setNome(nome);
-        lista.setStatus(false);
 
         db.insertLista(lista);
     }

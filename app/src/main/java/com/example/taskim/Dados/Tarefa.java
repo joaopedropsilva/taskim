@@ -1,5 +1,7 @@
 package com.example.taskim.Dados;
 
+// Classe de dados que
+// representa uma tarefa
 public class Tarefa {
     private int id;
     private boolean status;
